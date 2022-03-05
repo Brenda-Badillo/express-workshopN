@@ -9,7 +9,7 @@
   },
   "repository":{
     "type":"git",
-    "url":"https://github.com/Brenda-Badillo/express_workshop"
+    "url":"https://github.com/Brenda-Badillo/express-workshopN.git"
   },
   "keywords": [
     "node",
@@ -20,9 +20,9 @@
   "author": "Brenda BC",
   "license": "ISC",
   "bugs":{
-    "url":"https://github.com/Brenda-Badillo/express_workshop/issues"
+    "url":"https://github.com/Brenda-Badillo/express_workshopN/issues"
   },
-  "homepage":"https://github.com/Brenda-Badillo/express_workshop#readme",
+  "homepage":"https://github.com/Brenda-Badillo/express_workshopN#readme",
   "dependencies": {
     "express": "^4.17.3"
   }
