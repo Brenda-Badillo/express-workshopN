@@ -4,16 +4,25 @@
   "description": "An API REST using express.js",
   "main": "index.js",
   "scripts": {
+    "start": "node index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/Brenda-Badillo/express_workshop"
+  },
   "keywords": [
-    "api",
-    "rest",
+    "node",
     "express",
-    "nodejs"
+    "jwt",
+    "mysql"
   ],
   "author": "Brenda BC",
   "license": "ISC",
+  "bugs":{
+    "url":"https://github.com/Brenda-Badillo/express_workshop/issues"
+  },
+  "homepage":"https://github.com/Brenda-Badillo/express_workshop#readme",
   "dependencies": {
     "express": "^4.17.3"
   }
