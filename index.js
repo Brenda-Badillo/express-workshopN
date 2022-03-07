@@ -1,51 +1,42 @@
+/*
+Verbos HTTP
+
+GET - Obtener recursos
+POST - Almacenar/crear recursos
+PATCH (Actualización de un registro específico)
+PUT - Modificar un recurso
+DELETE - Borrar recurso
+*/
 const express = require('express');
 const app = express();
 const { pokemon } = require('./pokedex.json');
 
-/*
-Verbos HTTP
-
-GET
-POST
-PATCH (Actualización de un registro específico)
-PUT 
-DELETE
-*/ 
 app.get("/",(req,res,next) => {
-    res.status(200);
-    res.send("Bienvenido al Pokedex");
+    return res.status(200).send("Bienvenido al Pokedex");
 })
 
-app.get('/pokemon/all',(req, res,next)=>{
-    res.status(200);
-    res.send(pokemon);
+app.get('/pokemon',(req, res,next)=>{
+    return res.status(200).send(pokemon);
 });
 
-app.get('/pokemon/:id([0-9]{1,3})',(req, res,next)=>{
+app.get('/pokemon/:id([0-9]{1,3})',(req,res,next)=>{
     const id = req.params.id - 1;
-
-    if(id >= 0 && id >= 150){
-        res.status(200);
-        res.send(pokemon[req.params.id -1]);
-    } else{
-        res.status(404);
-        res.send("Pokémon no encontrado");
-    }
-    
+       return (id >= 0 && id <= 150) ? 
+       res.status(200).send(pokemon[req.params.id -1]): 
+       res.status(404).send("Pokémon no encontrado");
 });
 
-app.get('/pokemon/:name',(rep,res,next)=>{
+app.get('/pokemon/:name([A-Za-z]+)',(req,res,next)=>{
     const name = req.params.name;
-    for(i=0; i< pokemon.length; i++){
-        if (pokemon[i].name == name){
-            res.status(200);
-            res.send(pokemon[i]);
-        }
-    }
-    res.status(404);
-    res.send("Pokemon no encontrado");
+
+    const pk = pokemon.filter((p) => {
+       return (p.name.toUpperCase() == name.toUpperCase()) ? p : null;
+    });    
+        (pk.length > 0) ? 
+        res.status(200).send(pk) : 
+        res.status(404).send("Pokemon no encontrado");   
 });
 
 app.listen(process.env.PORT || 3000, ()=>{
-    console.log("Server is running");
+    console.log("Server is running...");
 });
