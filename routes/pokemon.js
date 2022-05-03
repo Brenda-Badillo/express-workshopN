@@ -34,7 +34,7 @@ pokemon.delete('/:id([0-9]{1,3})',async (req,res,next)=>{
 });
 
 pokemon.put('/:id([0-9]{1,3})',async (req,res,next)=>{
-    const {pok_name, pok_height, pok_weight, pok_base_experience}=rep.body
+    const {pok_name, pok_height, pok_weight, pok_base_experience}=rep.body;
 
     if(pok_name && pok_height && pok_weight && pok_base_experience){
         let query = `UPDATE pokemon SET pok_name='${pok_name}', pok_height=${pok_height}, `;
@@ -51,6 +51,21 @@ pokemon.put('/:id([0-9]{1,3})',async (req,res,next)=>{
         return res.status(500).json({ code: 500, message: "Campos incompletos"});
         });
 
+pokemon.patch('/:id([0-9]{1,3})',async (req,res,next)=>{
+
+    if(req.params.id){
+        let query = `UPDATE pokemon SET pok_name='${req.body.pok_name}' WHERE pok_id=${req.params.id} `;
+        const rows = await db.query(query);
+
+            if(rows.affectedRows==1){
+                return res.status(200).json({code:200,message:"Pokemon actualizado correctamente"});
+            }
+    
+            return res.status(500).json({code:500, message:"Ah ocurrido un error"});
+        }
+
+        return res.status(500).json({code:500, message:"Datos incompletos"});
+    }); 
 pokemon.get('/',async (req, res,next)=>{
     const pkmn = await db.query("SELECT * FROM pokemon");
     console.log(pkmn);
