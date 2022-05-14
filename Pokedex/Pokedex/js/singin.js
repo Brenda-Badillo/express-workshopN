@@ -3,11 +3,17 @@ const { sign } = require("jsonwebtoken");
 window.onload = init;
 
 function init(){
-    document.querySelector('.btn-secondary').addEventListener('click',function(){
-      window.location.href = "login.html"  
-    });
+    if(!localStorage.getItem("token")){
+        document.querySelector('.btn-secondary').addEventListener('click',function(){
+            window.location.href = "login.html"  
+          });
+      
+          document.querySelector('.btn-primary').addEventListener('click', signin);
+    } else {
+        window.location.href = "pokedex.html";
+    }
 
-    document.querySelector('.btn-primary').addEventListener('click', signin);
+    
 }
 
 function signin(){
