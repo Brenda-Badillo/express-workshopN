@@ -30,9 +30,9 @@ user.post("/login", async (req,res, next)=>{
                 user_id : rows[0].user_id,
                 user_mail: rows[0].user_mail
             }, "debugkey");
-            return res.status(200).json({code:401, message: token});
+            return res.status(200).json({code:200, message: token});
         }else {
-            return res.status(401).json({code:401, message: "Usuario y/o contraseña incorrectos"});
+            return res.status(200).json({code:200, message: "Usuario y/o contraseña incorrectos"});
         }
     }
     return res.status(500).json({ code:500, message: "Campos incompletos"});
